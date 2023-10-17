@@ -20,26 +20,26 @@
                     <div class="pole">
                         <h3>Поле сортировки</h3>
                         <span>
-                                <input type="radio" name="orderBy" value="id" {% if data.orderBy== 'id' %} checked {% endif %} form="formSort">
+                                <input type="radio" name="orderBy" value="id" @if($data['orderBy'] === 'id') checked @endif form="formSort">
                                 <b>id</b>
                             </span>
                         <span>
-                                <input type="radio" name="orderBy" value="name" {% if data.orderBy== 'name' %} checked {% endif %} form="formSort">
+                                <input type="radio" name="orderBy" value="name" @if($data['orderBy'] === 'name') checked @endif form="formSort">
                                 <b>Имя</b>
                             </span>
                         <span>
-                                <input type="radio" name="orderBy" value="surname" {% if data.orderBy== 'surname' %} checked {% endif %} form="formSort">
+                                <input type="radio" name="orderBy" value="surName" @if($data['orderBy'] === 'surName') checked @endif form="formSort">
                                 <b>Фамилия</b>
                             </span>
                     </div>
                     <div class="napr">
                         <h3>Направление сортировки</h3>
                         <span>
-                                <input type="radio" name="order" value="ASC" {% if data.order== 'ASC' %} checked {% endif %} form="formSort">
+                                <input type="radio" name="order" value="ASC" @if($data['order'] === 'ASC') checked @endif form="formSort">
                                 <b>Возрастание</b>
                             </span>
                         <span>
-                                <input type="radio" name="order" value="DESC" {% if data.order== 'DESC' %} checked {% endif %} form="formSort">
+                                <input type="radio" name="order" value="DESC" @if($data['order'] === 'DESC') checked @endif form="formSort">
                                 <b>Убывание</b>
                             </span>
                     </div>
@@ -62,7 +62,7 @@
                     <select size="1" name="cityId">
                         <option value="">Выберите город</option>
                         @foreach($cities as $city)
-                            <option value="{{ $city->id }}" {% if data.cityId== city.id %} selected {% endif %}>{{ $city->name }}</option>
+                            <option value="{{ $city->id }}" @if($data['cityId'] === $city->id) selected @endif>{{ $city->name }}</option>
                         @endforeach
                         <input type="submit" onclick="hhh()" value="Показать">
                     </select>
@@ -83,9 +83,9 @@
                         @else
                             <p>Город: {{ $user->city->name }}</p>
                         @endif
-    {{--                    <form action="{{ route('delete_user', ['id' => $userModel->id]) }}" method="post">--}}
-                        <input type="hidden" name="token" value="{{ csrf_token('delete_user') }}">
-                        <input type="submit" value="Удалить" onclick="return confirm('Вы действительно хотите удалить пользователя?')">
+                        <form action="{{ route('delete.user', ['id' => $user->id]) }}" method="post">
+                            @csrf
+                            <input type="submit" value="Удалить" onclick="return confirm('Вы действительно хотите удалить пользователя?')">
                         </form>
 
     {{--                    <form action="{{ route('edit_user', ['id' => $userModel->id]) }}" method="get">--}}

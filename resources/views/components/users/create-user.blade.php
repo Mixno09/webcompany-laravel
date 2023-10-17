@@ -1,6 +1,8 @@
 @php
-
-        @endphp
+    /**
+     * @var \Illuminate\Database\Eloquent\Collection<\App\Models\City> $cities
+    */
+@endphp
 <x-base>
     <x-slot:title>
         Create User
@@ -14,10 +16,6 @@
                 <div class="form">
                     <h3>Форма Добовления Пользователя</h3>
                     <input type="text" placeholder="Имя" value="{{ old('name') }}">
-{{--                    {{ form_widget(form.name, {--}}
-{{--                        'attr': {'placeholder': 'Имя'},--}}
-{{--                        'translation_domain': false,--}}
-{{--                    }) }}--}}
                     @error('name')
                     <span style="color: #d71414; margin: unset">{{ $message }}</span>
                     @enderror
@@ -26,21 +24,24 @@
                     <span style="color: #d71414; margin: unset">{{ $message }}</span>
                     @enderror
                     <span>
-                    {{ form_widget(form.city, {
-                        'attr': {'size': '1'},
-                        'translation_domain': false,
-                    }) }}
-                    {% for error in form.city.vars.errors %}
-                        <span style="color: #d71414; margin: unset">{{ error.message }}</span>
-                    {% endfor %}
+                    <select size="1" name="cityId">
+                        <option value="">Выберите город</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}" @if(old('cityId') === $city->id) selected @endif>{{ $city->name }}</option>
+                        @endforeach
+                        <input type="submit" onclick="hhh()" value="Показать">
+                    </select>
+                    @error('cityId')
+                        <span style="color: #d71414; margin: unset">{{ $message }}</span>
+                    @enderror
                 </span>
                     <p>Выберите файл изображения</p>
-                    {{ form_widget(form.media, {'translation_domain': false}) }}
-                    {% for error in form.media.vars.errors %}
-                    <span style="color: #d71414; margin: unset">{{ error.message }}</span>
-                    {% endfor %}
+{{--                    {{ form_widget(form.media, {'translation_domain': false}) }}--}}
+{{--                    {% for error in form.media.vars.errors %}--}}
+{{--                    <span style="color: #d71414; margin: unset">{{ error.message }}</span>--}}
+{{--                    {% endfor %}--}}
                     <input type="submit" value="Добавить">
-                    <a href="{{ path('users') }}">Отмена</a>
+                    <a href="{{ route('show.users') }}">Отмена</a>
                 </div>
             </form>
         </div>

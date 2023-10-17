@@ -58,3 +58,8 @@ Route::post(
     '/store/user',
     [UserModelController::class, 'storeUser']
 )->name('store.user');
+
+Route::post(
+    '/delete/{id}/user',
+    [UserModelController::class, 'deleteUser']
+)->name('delete.user');
