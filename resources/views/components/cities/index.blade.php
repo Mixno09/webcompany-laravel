@@ -2,7 +2,7 @@
 /**
  * @var bool $showForm
  * @var string[] $data
- * @var \Illuminate\Database\Eloquent\Collection $cities
+ * @var \Illuminate\Database\Eloquent\Collection<\App\Models\City> $cities
 */
 @endphp
 
@@ -80,3 +80,4 @@
     <div class="postbottom"></div>
     </div>
 </x-base>
+

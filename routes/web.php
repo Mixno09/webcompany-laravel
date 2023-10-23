@@ -59,7 +59,22 @@ Route::post(
     [UserModelController::class, 'storeUser']
 )->name('store.user');
 
+Route::get(
+    '/edit/{id}/user',
+    [UserModelController::class, 'editUser']
+)->name('edit.user');
+
+Route::post(
+    '/store/edit/user',
+    [UserModelController::class, 'storeEditUser']
+)->name('store.edit.user');
+
 Route::post(
     '/delete/{id}/user',
     [UserModelController::class, 'deleteUser']
 )->name('delete.user');
+
+Route::get(
+    '/search',
+    [UserModelController::class, 'search']
+)->name('search.user');

@@ -35,13 +35,12 @@ class GetUserQueryJob
             default => 'ASC',
         };
 
-        $users = UserModel::query()->orderBy($orderBy, $order)->get();
-
+        $queryBuilder = UserModel::query()->with('city')->orderBy($orderBy, $order);
         if ($this->cityId !== 0) {
-            $users = UserModel::query()->where('city_id', $this->cityId)->get();
+            $queryBuilder->where('city_id', $this->cityId);
         }
 
-        return $users;
+        return $queryBuilder->get();
     }
 
     public static function normalize(string $orderBy, string $order, int $cityId): array

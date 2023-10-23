@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCityRequest;
-use App\Http\Requests\TestRequest;
-use App\Jobs\DeleteCityJob;
 use App\Jobs\GetCityQueryJob;
 use App\Models\City;
 use Illuminate\Contracts\View\View;

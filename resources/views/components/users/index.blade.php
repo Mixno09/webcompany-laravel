@@ -20,26 +20,26 @@
                     <div class="pole">
                         <h3>Поле сортировки</h3>
                         <span>
-                                <input type="radio" name="orderBy" value="id" @if($data['orderBy'] === 'id') checked @endif form="formSort">
+                                <input type="radio" name="orderBy" value="id" @checked($data['orderBy'] === 'id') form="formSort">
                                 <b>id</b>
                             </span>
                         <span>
-                                <input type="radio" name="orderBy" value="name" @if($data['orderBy'] === 'name') checked @endif form="formSort">
+                                <input type="radio" name="orderBy" value="name" @checked($data['orderBy'] === 'name') form="formSort">
                                 <b>Имя</b>
                             </span>
                         <span>
-                                <input type="radio" name="orderBy" value="surName" @if($data['orderBy'] === 'surName') checked @endif form="formSort">
+                                <input type="radio" name="orderBy" value="surName" @checked($data['orderBy'] === 'surName') form="formSort">
                                 <b>Фамилия</b>
                             </span>
                     </div>
                     <div class="napr">
                         <h3>Направление сортировки</h3>
                         <span>
-                                <input type="radio" name="order" value="ASC" @if($data['order'] === 'ASC') checked @endif form="formSort">
+                                <input type="radio" name="order" value="ASC" @checked($data['order'] === 'ASC') form="formSort">
                                 <b>Возрастание</b>
                             </span>
                         <span>
-                                <input type="radio" name="order" value="DESC" @if($data['order'] === 'DESC') checked @endif form="formSort">
+                                <input type="radio" name="order" value="DESC" @checked($data['order'] === 'DESC') form="formSort">
                                 <b>Убывание</b>
                             </span>
                     </div>
@@ -62,7 +62,7 @@
                     <select size="1" name="cityId">
                         <option value="">Выберите город</option>
                         @foreach($cities as $city)
-                            <option value="{{ $city->id }}" @if($data['cityId'] === $city->id) selected @endif>{{ $city->name }}</option>
+                            <option value="{{ $city->id }}" @selected($data['cityId'] === $city->id)>{{ $city->name }}</option>
                         @endforeach
                         <input type="submit" onclick="hhh()" value="Показать">
                     </select>
@@ -71,10 +71,10 @@
 
             @foreach($users as $user)
                 <div class="users">
-                    @if($user->getFirstMedia() !== null)
-                        <img width="100" src="{{ $user->getFirstMedia()->getUrl('preview') }}" class="image" alt="Фотография">
+                    @if($user->getFirstMedia('avatar') !== null)
+                        <img width="100" src="{{ $user->getFirstMedia('avatar')->getUrl('preview') }}" class="image" alt="Фотография">
                     @else
-                        <img width="100" src="/images/placeholder.png" class="image" alt="Фотография">
+                        <img width="100" src="{{ asset('/images/placeholder.png') }}" class="image" alt="Фотография">
                     @endif
                     <div class="userdan">
                         <h4>{{ $user->name }} {{ $user->surName }}</h4>
@@ -88,7 +88,7 @@
                             <input type="submit" value="Удалить" onclick="return confirm('Вы действительно хотите удалить пользователя?')">
                         </form>
 
-    {{--                    <form action="{{ route('edit_user', ['id' => $userModel->id]) }}" method="get">--}}
+                    <form action="{{ route('edit.user', ['id' => $user->id]) }}" method="get">
                         <input type="submit" value="Редактировать">
                     </form>
                     </div>

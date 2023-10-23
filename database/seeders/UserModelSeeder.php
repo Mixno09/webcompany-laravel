@@ -21,7 +21,7 @@ class UserModelSeeder extends Seeder
             ]);
         $user->addMedia(__DIR__ . '/avatars/avatar-1.jpg')
             ->preservingOriginal()
-            ->toMediaCollection()
+            ->toMediaCollection('avatar')
         ;
 
         $user = UserModel::factory()
@@ -35,7 +35,7 @@ class UserModelSeeder extends Seeder
             ]);
         $user->addMedia(__DIR__ . '/avatars/avatar-2.jpg')
             ->preservingOriginal()
-            ->toMediaCollection()
+            ->toMediaCollection('avatar')
         ;
 
         $user = UserModel::factory()
@@ -49,7 +49,7 @@ class UserModelSeeder extends Seeder
             ]);
         $user->addMedia(__DIR__ . '/avatars/avatar-3.jpg')
             ->preservingOriginal()
-            ->toMediaCollection()
+            ->toMediaCollection('avatar')
         ;
 
         UserModel::factory()
